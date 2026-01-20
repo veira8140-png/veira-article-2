@@ -1,3 +1,11 @@
+#!/bin/bash
+# One-command: setup Article 2 with modern VeiraHQ-style, SEO, schema, CTA, dark mode
+
+# Ensure folders exist
+mkdir -p assets/css _layouts
+
+# Overwrite index.html with full modern Article 2
+cat > index.html << 'EOL'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,3 +119,36 @@ function toggleDarkMode(){
 </script>
 </body>
 </html>
+EOL
+
+# Create minimal CSS for modern layout
+cat > assets/css/style.css << 'EOL'
+body { font-family: 'Inter', sans-serif; line-height:1.7; margin:0; padding:0; color:#222; background:#fff; }
+.container{ max-width:900px; margin:50px auto; padding:0 20px; }
+h1{ font-size:2.8rem; font-weight:700; margin-bottom:20px; }
+h2{ font-size:1.8rem; margin-top:30px; margin-bottom:15px; color:#1d4ed8; }
+p{ font-size:1.1rem; margin-bottom:15px; }
+a{ color:#0066cc; text-decoration:none; }
+a:hover{text-decoration:underline;}
+.cta{margin:40px 0; background:#eef2ff; padding:25px; text-align:center; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.cta a{display:inline-block; padding:12px 25px; background:#1e40af; color:#fff; border-radius:6px; font-weight:600; text-decoration:none;}
+.cta a:hover{background:#1e3a8a;}
+header.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb); color:white; text-align:center; padding:80px 20px;}
+header.hero h1{font-size:2.8rem; font-weight:700; margin-bottom:15px;}
+header.hero p{font-size:1.2rem; margin-bottom:20px;}
+.btn{display:inline-block; padding:14px 28px; border-radius:6px; font-weight:700; text-decoration:none;}
+.btn-primary{background:#ff6600; color:white;}
+.btn-primary:hover{background:#e65c00;}
+.btn-secondary{background:#1e40af; color:white; margin-top:20px;}
+.btn-secondary:hover{background:#1e3a8a;}
+.dark-toggle{position:fixed; top:20px; right:20px; background:#1e40af; color:#fff; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; font-weight:600; z-index:1000;}
+.dark-toggle:hover{background:#1e3a8a;}
+footer.footer{text-align:center; padding:20px 0; font-size:0.9rem; color:#555; margin-top:40px;}
+EOL
+
+# Stage, commit, and push everything
+git add .
+git commit -m "Article 2: full draft with modern VeiraHQ-style, SEO, schema, CTA, dark mode"
+git push origin main
+
+echo "✅ Article 2 live with modern design, SEO, schema, and CTA. Check your GitHub Pages!"
